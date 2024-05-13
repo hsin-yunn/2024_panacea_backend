@@ -4,15 +4,17 @@
  * Module dependencies.
  */
 
-const app = require('../app');
-const debug = require('debug')('panacea-backend:server');
-const http = require('http');
+import app from '../app';
+import debug from 'debug';
+import http from 'http';
+
+const log = debug('panacea-backend:server');
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port: string | number | false = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
@@ -33,7 +35,7 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
+function normalizePort(val: string): number | string | false {
   const port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -53,7 +55,7 @@ function normalizePort(val) {
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onError(error: NodeJS.ErrnoException): void {
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -79,8 +81,8 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
+function onListening(): void {
   const addr = server.address();
-  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr?.port;
+  log('Listening on ' + bind);
 }
