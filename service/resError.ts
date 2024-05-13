@@ -1,4 +1,7 @@
-const resErrorProd = function (err, res) {
+import { Response } from 'express';
+import AppError from '../types/AppError';
+
+const resErrorProd = function (err:AppError, res:Response) {
   if (err.isOperational) {
     res.status(err.statusCode).json({
       message: err.message,
@@ -11,15 +14,15 @@ const resErrorProd = function (err, res) {
     });
   }
 };
-const resErrorDev = function (err, res) {
+const resErrorDev = function (err:AppError, res:Response) {
   res.status(err.statusCode).json({
     message: err.message,
     error: err,
-    code: err.StatusCode,
+    code: err.statusCode,
   });
 };
 
-module.exports = {
+export {
   resErrorProd,
   resErrorDev,
 };
