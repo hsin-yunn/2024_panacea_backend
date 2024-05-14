@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "build": "tsc --project ./ && tsp compile ./spec/main.tsp --output-dir ./spec && swagger-cli bundle ./spec/@typespec/openapi3/openapi.yaml -t json -o ./spec/swagger.json",
-    "dev": "nodemon app.ts",
     "ts-build": "tsc",
     "start": "node ./dist/bin/www",
     "start:dev": "cross-env NODE_ENV=dev nodemon --exec ts-node ./bin/www.ts",
