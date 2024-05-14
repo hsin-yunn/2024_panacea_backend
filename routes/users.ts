@@ -1,10 +1,8 @@
 import express from "express";
-import { Request,Response } from "express";
 const router = express.Router();
+import { signup } from "../controllers/users";
 
 /* GET users listing. */
-router.get('/', function (req:Request, res:Response) {
-  res.send('respond with a resource heyhey');
-});
+router.post('/auth/sign-up',signup);
 
 export default router;

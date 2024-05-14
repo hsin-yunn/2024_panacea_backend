@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //route
-app.use('/users', usersRouter);
+app.use('/', usersRouter);
 //404
 app.use(function (req: Request, res: Response, next: NextFunction) {
   appErrorService(404, '找不到路徑', next);
