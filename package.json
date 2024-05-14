@@ -3,11 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "tsc --project ./ && tsp compile ./spec/main.tsp --output-dir ./spec && swagger-cli bundle ./spec/@typespec/openapi3/openapi.yaml -t json -o ./spec/swagger.json",
     "dev": "nodemon app.ts",
-    "build": "tsc",
+    "dev-build": "tsc",
     "start": "node ./bin/www",
     "start:dev": "cross-env NODE_ENV=dev nodemon --exec ts-node ./bin/www.ts",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build-typescript": "tsc --project ./",
+    "build-typespec": "tsp compile ./spec/main.tsp --output-dir ./spec",
+    "build-swagger": "swagger-cli bundle ./spec/@typespec/openapi3/openapi.yaml -t json -o ./spec/swagger.json",
+    "build-docs": "tsp compile ./spec/main.tsp --output-dir ./spec && swagger-cli bundle ./spec/@typespec/openapi3/openapi.yaml -t json -o ./spec/swagger.json"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -21,6 +26,7 @@
     "mongoose": "^8.3.3",
     "morgan": "~1.9.1",
     "nodemailer": "^6.9.13",
+    "swagger-ui-express": "^5.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -35,6 +41,7 @@
     "eslint-plugin-typescript": "^0.14.0",
     "globals": "^15.2.0",
     "nodemon": "^3.1.0",
+    "swagger-cli": "^4.0.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.9.0",
