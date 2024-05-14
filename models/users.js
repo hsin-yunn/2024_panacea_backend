@@ -1,6 +1,16 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    select: false,
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+    select: false,
+  },
   name: {
     type: String,
     requried: [true, '姓名必填'],
@@ -12,6 +22,20 @@ const schema = new mongoose.Schema({
   password: {
     type: String,
     requried: [true, '密碼必填'],
+  },
+  avatar: {
+    type: String,
+  },
+  emailVerifiedAt: {
+    type: Date,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  isCoach: {
+    type: Boolean,
+    default: false,
   },
 });
 
