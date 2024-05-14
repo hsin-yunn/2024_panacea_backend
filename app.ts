@@ -44,7 +44,7 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
   appErrorService(404, '找不到路徑', next);
 });
 //error
-app.use(function (err: AppError, req: Request, res: Response, next: NextFunction) {
+app.use(function (err: AppError, req: Request, res: Response) {
   err.statusCode = err.statusCode || 500;
   if (process.env.NODE_ENV === 'dev') {
     return resErrorDev(err, res);
