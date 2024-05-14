@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
-import { signup } from "../controllers/users";
+import { register } from "../controllers/users";
 
 /* GET users listing. */
-router.post('/auth/sign-up',signup);
+router.post('/api/auth/register',register);
 
 export default router;
