@@ -8,7 +8,10 @@ import AppError from "./types/AppError";
 import appErrorService from './service/appErrorService';
 import {resErrorProd, resErrorDev} from './service/resError';
 import swaggerUI from 'swagger-ui-express';
-const swaggerFile = require('./swagger-output.json');
+
+const rootDir = path.resolve(__dirname, '..');
+const swaggerFilePath = path.join(rootDir, 'swagger-output.json');
+const swaggerFile = require(swaggerFilePath);
 
 //env
 import dotenv from 'dotenv'; 

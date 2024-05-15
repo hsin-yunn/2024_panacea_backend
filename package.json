@@ -7,7 +7,8 @@
     "start:dev": "cross-env NODE_ENV=dev nodemon --exec ts-node ./bin/www.ts",
     "start:pro": "tsc && cross-env NODE_ENV=pro nodemon ./dist/bin/www",
     "lint": "eslint .",
-    "generate-swagger": "node swagger.js"
+    "generate-swagger": "node swagger.js",
+    "tsc": "tsc"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

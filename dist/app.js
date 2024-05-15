@@ -11,7 +11,9 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const appErrorService_1 = __importDefault(require("./service/appErrorService"));
 const resError_1 = require("./service/resError");
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
-const swaggerFile = require('./swagger-output.json');
+const rootDir = path_1.default.resolve(__dirname, '..');
+const swaggerFilePath = path_1.default.join(rootDir, 'swagger-output.json');
+const swaggerFile = require(swaggerFilePath);
 //env
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: './.env' });
@@ -41,7 +43,7 @@ app.use(function (req, res, next) {
     (0, appErrorService_1.default)(404, '找不到路徑', next);
 });
 //error
-app.use(function (err, req, res) {
+app.use(function (err, req, res, next) {
     err.statusCode = err.statusCode || 500;
     if (process.env.NODE_ENV === 'dev') {
         return (0, resError_1.resErrorDev)(err, res);
