@@ -19,4 +19,6 @@ export const signIn = handleErrorAsync(async (req, res, next) => {
   let { email, password, name } = req.body
   password = await bcrypt.hash(req.body.password, 12)
   console.log(password);
+  //確認 email,password
+  //產生 token
 });
