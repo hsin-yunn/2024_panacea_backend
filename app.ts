@@ -9,7 +9,7 @@ import appErrorService from './service/appErrorService';
 import {resErrorProd, resErrorDev} from './service/resError';
 import swaggerUI from 'swagger-ui-express';
 
-const rootDir = path.resolve(__dirname, '..');
+const rootDir = process.cwd();
 const swaggerFilePath = path.join(rootDir, 'swagger-output.json');
 const swaggerFile = require(swaggerFilePath);
 
