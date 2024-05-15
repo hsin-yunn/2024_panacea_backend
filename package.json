@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node swagger.js && node ./dist/bin/www",
+    "start:test": "node swagger.js && node ./dist/bin/www",
+    "start": "tsc && node swagger.js && node ./dist/bin/www",
     "start:dev": "cross-env NODE_ENV=dev nodemon --exec ts-node ./bin/www.ts",
     "start:pro": "tsc && cross-env NODE_ENV=pro nodemon ./dist/bin/www",
     "lint": "eslint .",
