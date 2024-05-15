@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start:test": "node swagger.js && node ./dist/bin/www",
-    "start": "node swagger.js && node --exec ts-node ./bin/www.ts",
+    "start": "node swagger.js && ts-node ./bin/www.ts",
     "start:dev": "cross-env NODE_ENV=dev nodemon --exec ts-node ./bin/www.ts",
     "start:pro": "tsc && cross-env NODE_ENV=pro nodemon ./dist/bin/www",
     "lint": "eslint .",
