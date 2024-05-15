@@ -1,3 +1,0 @@
-"use strict";
-//generateJwt
-//isAuth
