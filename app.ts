@@ -18,10 +18,11 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './.env' });
 
 //mongoose
-const DB = process.env.DATABASE!.replace(
-  '<password>',
-  process.env.DATABASE_PASSWORD!,
-);
+// const DB = process.env.DATABASE!.replace(
+//   '<password>',
+//   process.env.DATABASE_PASSWORD!,
+// );
+const DB = process.env.MONGO_CONNECTION_STRING!;
 mongoose
   .connect(DB)
   .then(() => {
