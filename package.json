@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "node": ">= 6.13.0",
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "start:test": "node swagger.js && node ./dist/bin/www",
     "start:test2": "tsp compile ./spec/main.tsp --output-dir ./spec && ts-node ./bin/www.ts",
