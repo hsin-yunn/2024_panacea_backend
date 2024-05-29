@@ -4,6 +4,11 @@
   "private": true,
   "node": ">= 6.13.0",
   "packageManager": "yarn@1.22.22",
+  "engines": {
+    "npm": "8.x",
+    "pnpm": "8.x",
+    "node": "16.x"
+  },
   "scripts": {
     "start": "ts-node ./bin/www.ts",
     "start:dev": "tsp compile ./spec/main.tsp --output-dir ./spec && nodemon ./bin/www.ts",
