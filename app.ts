@@ -10,8 +10,8 @@ import { resErrorProd, resErrorDev } from './service/resError';
 // import swaggerUI from 'swagger-ui-express';
 import apiLimiter from './service/rateLimit';
 //router
-import usersRouter from './routes/users';
-import uploadRouter from './routes/upload';
+// import usersRouter from './routes/users';
+// import uploadRouter from './routes/upload';
 import coachRouter from './routes/coach.route';
 //env
 import dotenv from 'dotenv';
@@ -42,8 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //api rate limit
 app.use('/api', apiLimiter);
 //route
-app.use('/', usersRouter);
-app.use('/', uploadRouter);
+// app.use('/', usersRouter);
+// app.use('/', uploadRouter);
 app.use('/', coachRouter);
 // app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 //404
