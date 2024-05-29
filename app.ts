@@ -42,9 +42,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //api rate limit
 app.use('/api', apiLimiter);
 //route
-app.use('/', usersRouter);
-app.use('/', uploadRouter);
-app.use('/', coachRouter);
+app.use('/user', usersRouter);
+app.use('/upload', uploadRouter);
+app.use('/coach', coachRouter);
 // app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 //404
 app.use(function (req: Request, res: Response, next: NextFunction) {
