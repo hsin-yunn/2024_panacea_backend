@@ -8,11 +8,11 @@ import AppError from './types/AppError';
 import appErrorService from './service/appErrorService';
 import { resErrorProd, resErrorDev } from './service/resError';
 // import swaggerUI from 'swagger-ui-express';
-// import apiLimiter from './service/rateLimit';
+import apiLimiter from './service/rateLimit';
 //router
-// import usersRouter from './routes/users';
-// import uploadRouter from './routes/upload';
-// import coachRouter from './routes/coach.route';
+import usersRouter from './routes/users';
+import uploadRouter from './routes/upload';
+import coachRouter from './routes/coach.route';
 //env
 import dotenv from 'dotenv';
 const app = express();
@@ -40,11 +40,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //api rate limit
-// app.use('/api', apiLimiter);
+app.use('/api', apiLimiter);
 //route
-// app.use('/', usersRouter);
-// app.use('/', uploadRouter);
-// app.use('/', coachRouter);
+app.use('/', usersRouter);
+app.use('/', uploadRouter);
+app.use('/', coachRouter);
 // app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 //404
 app.use(function (req: Request, res: Response, next: NextFunction) {
