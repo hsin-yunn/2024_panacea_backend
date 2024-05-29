@@ -8,7 +8,7 @@ import AppError from './types/AppError';
 import appErrorService from './service/appErrorService';
 import { resErrorProd, resErrorDev } from './service/resError';
 // import swaggerUI from 'swagger-ui-express';
-import apiLimiter from './service/rateLimit';
+// import apiLimiter from './service/rateLimit';
 //router
 import usersRouter from './routes/users';
 // import uploadRouter from './routes/upload';
@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //api rate limit
-app.use('/api', apiLimiter);
+// app.use('/api', apiLimiter);
 //route
 app.use('/user', usersRouter);
 // app.use('/upload', uploadRouter);
