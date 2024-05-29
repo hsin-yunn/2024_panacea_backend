@@ -8,9 +8,9 @@ import AppError from './types/AppError';
 import appErrorService from './service/appErrorService';
 import { resErrorProd, resErrorDev } from './service/resError';
 // import swaggerUI from 'swagger-ui-express';
-// import apiLimiter from './service/rateLimit';
+import apiLimiter from './service/rateLimit';
 //router
-import usersRouter from './routes/users';
+// import usersRouter from './routes/users';
 // import uploadRouter from './routes/upload';
 // import coachRouter from './routes/coach.route';
 //env
@@ -40,9 +40,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //api rate limit
-// app.use('/api', apiLimiter);
+app.use('/api', apiLimiter);
 //route
-app.use('/user', usersRouter);
+// app.use('/user', usersRouter);
 // app.use('/upload', uploadRouter);
 // app.use('/coach', coachRouter);
 // app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
