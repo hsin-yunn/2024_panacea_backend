@@ -225,3 +225,35 @@ export const applyCoach = handleErrorAsync(async (req, res, next) => {
     return appErrorService(400, (error as Error).message, next);
   }
 });
+
+const userController = {
+  updatePassword : handleErrorAsync(async (req, res, next) => {
+    const { password, newPassword, newPasswordConfirm } = req.body;
+    const _id = req.user?.id;
+    updatePasswordZod.parse({ password, newPassword, newPasswordConfirm });
+    try {
+      const currentUser = await UserModel.findById(_id);
+      const isMatch = await bcrypt.compare(password, currentUser!.password as string);
+      if (isMatch) {
+        const updatedAt = new Date();
+        const updatePassword = await bcrypt.hash(newPassword, 12);
+        await UserModel.findByIdAndUpdate(
+          {
+            _id,
+          },
+          {
+            password: updatePassword,
+            updatedAt,
+          }
+        );
+        handleSuccess(res, 200, 'password update.');
+      } else {
+        return appErrorService(400, '發生錯誤', next);
+      }
+    } catch (error) {
+      return appErrorService(400, (error as Error).message, next);
+    }
+  }),
+}
+
+export default userController;
