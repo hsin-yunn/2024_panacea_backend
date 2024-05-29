@@ -11,8 +11,8 @@ import { resErrorProd, resErrorDev } from './service/resError';
 import apiLimiter from './service/rateLimit';
 //router
 import usersRouter from './routes/users';
-import uploadRouter from './routes/upload';
-import coachRouter from './routes/coach.route';
+// import uploadRouter from './routes/upload';
+// import coachRouter from './routes/coach.route';
 //env
 import dotenv from 'dotenv';
 const app = express();
@@ -43,8 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', apiLimiter);
 //route
 app.use('/user', usersRouter);
-app.use('/upload', uploadRouter);
-app.use('/coach', coachRouter);
+// app.use('/upload', uploadRouter);
+// app.use('/coach', coachRouter);
 // app.use('/api-doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 //404
 app.use(function (req: Request, res: Response, next: NextFunction) {
