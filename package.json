@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "node": ">= 6.13.0",
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "start": "ts-node ./bin/www.ts",
     "start:dev": "tsp compile ./spec/main.tsp --output-dir ./spec && nodemon ./bin/www.ts",
