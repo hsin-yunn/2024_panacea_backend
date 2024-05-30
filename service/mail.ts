@@ -11,19 +11,15 @@ const OAuth2 = google.auth.OAuth2;
 const mailSender = process.env.MAIL_SENDER;
 
 export const sendMail = async (options: object, res: Response) => {
-  const GOOGLE_AUTH_CLIENTID = process.env.GOOGLE_AUTH_CLIENTID;
-  const GOOGLE_AUTH_CLIENT_SECRET = process.env.GOOGLE_AUTH_CLIENT_SECRET;
-  const GOOGLE_AUTH_REFRESH_TOKEN = process.env.GOOGLE_AUTH_REFRESH_TOKEN;
-
   const oauth2Client = new OAuth2(
-    GOOGLE_AUTH_CLIENTID,
-    GOOGLE_AUTH_CLIENT_SECRET,
-    'https://developers.google.com/oauthplayground'
-  );
+    process.env.GOOGLE_AUTH_CLIENTID, 
+    process.env.GOOGLE_AUTH_CLIENT_SECRET, 
+    "https://developers.google.com/oauthplayground" 
+);
 
-  oauth2Client.setCredentials({
-    refresh_token: GOOGLE_AUTH_REFRESH_TOKEN,
-  });
+oauth2Client.setCredentials({
+  refresh_token: process.env.GOOGLE_AUTH_REFRESH_TOKEN
+});
 
   const accessToken = oauth2Client.getAccessToken();
 
@@ -32,9 +28,9 @@ export const sendMail = async (options: object, res: Response) => {
     auth: {
       type: 'OAuth2',
       user: mailSender,
-      clientId: GOOGLE_AUTH_CLIENTID,
-      clientSecret: GOOGLE_AUTH_CLIENT_SECRET,
-      refreshToken: GOOGLE_AUTH_REFRESH_TOKEN,
+      clientId: process.env.GOOGLE_AUTH_CLIENTID,
+            clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
+            refreshToken: process.env.GOOGLE_AUTH_REFRESH_TOKEN,
       accessToken: accessToken,
     },
   } as nodemailer.TransportOptions);
