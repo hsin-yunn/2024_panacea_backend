@@ -3,15 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "node": ">= 6.13.0",
-  "engines": {
-    "npm": "8.x",
-    "pnpm": "8.x",
-    "node": "16.x"
-  },
   "scripts": {
-    "start": "ts-node ./bin/www.ts",
+    "start:test": "node swagger.js && node ./dist/bin/www",
+    "start": "tsp compile ./spec/main.tsp --output-dir ./spec && ts-node ./bin/www.ts",
     "start:dev": "tsp compile ./spec/main.tsp --output-dir ./spec && nodemon ./bin/www.ts",
-    "start:pro": "tsc && cross-env NODE_ENV=pro nodemon ./dist/bin/www"
+    "start:pro": "tsc && cross-env NODE_ENV=pro nodemon ./dist/bin/www",
+    "lint": "eslint .",
+    "generate-swagger": "node swagger.js",
+    "tsc": "tsc",
+    "typespec": "tsp compile ./spec/main.tsp --output-dir ./spec --watch"
   },
   "dependencies": {
     "@typespec/openapi": "^0.56.0",
