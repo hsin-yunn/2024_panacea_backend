@@ -9,7 +9,10 @@ const USER =
   '-password -subject -specialty -language -workExperience -education -certifiedDocuments -bankName -bankCode -bankAccount -actualAmount -earnings -approvalStatus';
 const COACH = '-password';
 // 註冊學員
-export const register = handleErrorAsync(async (req, res, next) => {
+
+export default {
+
+ register : handleErrorAsync(async (req, res, next) => {
   let { name, email, password, confirmPassword } = req.body;
 
   //確認 email 是否已被註冊過
@@ -29,10 +32,10 @@ export const register = handleErrorAsync(async (req, res, next) => {
     });
   }
   await registerMailSend(email, user.id, res);
-});
+}),
 
 //登入
-export const signIn = handleErrorAsync(async (req, res, next) => {
+ signIn : handleErrorAsync(async (req, res, next) => {
   let { email, password } = req.body;
 
   const user = await UserModel.findOne({ email });
@@ -47,10 +50,10 @@ export const signIn = handleErrorAsync(async (req, res, next) => {
   } else {
     appErrorService(400, 'email or password is not correct', next);
   }
-});
+}),
 
 // 寄送Email驗證信
-export const sendVerifyEmail = handleErrorAsync(async (req, res, next) => {
+ sendVerifyEmail : handleErrorAsync(async (req, res, next) => {
   const { email } = req.body;
 
   const user = await UserModel.findOne({ email, emailVerifiedAt: null });
@@ -61,10 +64,10 @@ export const sendVerifyEmail = handleErrorAsync(async (req, res, next) => {
     handleSuccess(res, 200, 'mail is sent');
     // return appErrorService(400,'email sent failed',next);
   }
-});
+}),
 
 // 驗證Email
-export const verifyEmail = handleErrorAsync(async (req, res, next) => {
+ verifyEmail : handleErrorAsync(async (req, res, next) => {
   const { userId } = req.params;
   const user = await UserModel.findById(userId);
 
@@ -81,10 +84,10 @@ export const verifyEmail = handleErrorAsync(async (req, res, next) => {
   } else {
     return appErrorService(400, 'verify failed', next);
   }
-});
+}),
 
 // 忘記密碼 寄送密碼重置信
-export const sendForgetPassword = handleErrorAsync(async (req, res, next) => {
+ sendForgetPassword : handleErrorAsync(async (req, res, next) => {
   const { email } = req.body;
 
   const user = await UserModel.findOne({ email });
@@ -95,10 +98,10 @@ export const sendForgetPassword = handleErrorAsync(async (req, res, next) => {
     handleSuccess(res, 200, 'mail is sent');
     // return appErrorService(400,'email sent failed',next);
   }
-});
+}),
 
 //重設密碼
-export const resetPassword = handleErrorAsync(async (req, res, next) => {
+ resetPassword : handleErrorAsync(async (req, res, next) => {
   //reset password from forget password
   const { password, confirmPassword } = req.body;
 
@@ -118,10 +121,10 @@ export const resetPassword = handleErrorAsync(async (req, res, next) => {
   } else {
     return appErrorService(400, '發生錯誤', next);
   }
-});
+}),
 
 // 更新密碼
-export const updatePassword = handleErrorAsync(async (req, res, next) => {
+ updatePassword : handleErrorAsync(async (req, res, next) => {
   const { password, newPassword, newPasswordConfirm } = req.body;
   const _id = req.user?.id;
   try {
@@ -146,9 +149,9 @@ export const updatePassword = handleErrorAsync(async (req, res, next) => {
   } catch (error) {
     return appErrorService(400, (error as Error).message, next);
   }
-});
+}),
 // 更新使用者資訊
-export const userUpdate = handleErrorAsync(async (req, res, next) => {
+ userUpdate : handleErrorAsync(async (req, res, next) => {
   const { name, avatar } = req.body;
   const updatedAt = new Date();
   const updateFields = { name, avatar, updatedAt };
@@ -164,9 +167,9 @@ export const userUpdate = handleErrorAsync(async (req, res, next) => {
   } catch (error) {
     return appErrorService(400, (error as Error).message, next);
   }
-});
+}),
 //取得使用者資訊
-export const userInfo = handleErrorAsync(async (req, res, next) => {
+ userInfo : handleErrorAsync(async (req, res, next) => {
   const _id = req.user?.id;
   const isCoach = req.user?.isCoach;
   try {
@@ -176,10 +179,10 @@ export const userInfo = handleErrorAsync(async (req, res, next) => {
     return appErrorService(400, (error as Error).message, next);
   }
   handleSuccess(res, 200, 'get data');
-});
+}),
 
 //註冊教練
-export const applyCoach = handleErrorAsync(async (req, res, next) => {
+ applyCoach : handleErrorAsync(async (req, res, next) => {
   let { subject, specialty, language, workExperience, education, certifiedDocuments } = req.body;
   const _id = req.user?.id;
   const isCoach = req.user?.isCoach;
@@ -209,4 +212,5 @@ export const applyCoach = handleErrorAsync(async (req, res, next) => {
   } catch (error) {
     return appErrorService(400, (error as Error).message, next);
   }
-});
+}),
+}
