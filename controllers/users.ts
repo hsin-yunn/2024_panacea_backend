@@ -2,6 +2,7 @@ import handleErrorAsync from '../service/handleErrorAsync';
 import bcrypt from 'bcryptjs';
 import { UserModel } from '../models/users';
 import appErrorService from '../service/appErrorService';
+import { registerMailSend } from '../service/mail';
 import { generateJwtSend } from '../service/auth';
 const USER =
   '-password -subject -specialty -language -workExperience -education -certifiedDocuments -bankName -bankCode -bankAccount -actualAmount -earnings -approvalStatus';
@@ -19,6 +20,7 @@ export default {
   if (user && isMatch) {
     //產生 token
     if (!user.emailVerifiedAt) {
+      await registerMailSend(email, user.id, res);
     } else {
       generateJwtSend(user.id, res);
     }
