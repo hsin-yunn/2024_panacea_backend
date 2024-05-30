@@ -33,7 +33,7 @@ let transporter = nodemailer.createTransport({
       refreshToken: process.env.GOOGLE_AUTH_REFRESH_TOKEN,
       accessToken: accessToken
   }
-});
+} as nodemailer.TransportOptions);
 
 const mailOptions = {
   from: '廖洧杰 <gonsakon@gmail.com>',
