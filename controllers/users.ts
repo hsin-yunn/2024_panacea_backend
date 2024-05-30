@@ -2,7 +2,7 @@ import handleErrorAsync from '../service/handleErrorAsync';
 import bcrypt from 'bcryptjs';
 import appErrorService from '../service/appErrorService';
 import handleSuccess from '../service/handleSuccess';
-import UserModel from '../models/users';
+import { UserModel } from '../models/users';
 
 const userController = {
   updatePassword : handleErrorAsync(async (req, res, next) => {
