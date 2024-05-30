@@ -1,24 +1,19 @@
 import express from 'express';
 import userController from '../controllers/users';
 import { signedMiddleware } from '../service/signature';
-import throttle from '../service/throttle';
 import { isAuth } from '../service/auth';
 const router = express.Router();
 
 //user signin,signup
 router.post('/api/auth/register', userController.register); // 註冊學員
-router.post('/api/auth/sign-in', throttle, userController.signIn); // 登入
-router.post('/api/auth/verify-email', throttle, userController.sendVerifyEmail); // 寄送Email驗證信
+router.post('/api/auth/sign-in', userController.signIn); // 登入
+router.post('/api/auth/verify-email', userController.sendVerifyEmail); // 寄送Email驗證信
 router.get(
   '/api/auth/email-link/:userId',
   signedMiddleware,
   userController.verifyEmail,
 ); // 驗證Email
-router.post(
-  '/api/auth/forget-password',
-  throttle,
-  userController.sendForgetPassword,
-); // 忘記密碼
+router.post('/api/auth/forget-password', userController.sendForgetPassword); // 忘記密碼
 router.post(
   '/api/auth/reset-password/:userId',
   signedMiddleware,
