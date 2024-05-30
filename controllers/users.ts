@@ -20,7 +20,7 @@ export default {
   if (user && isMatch) {
     //產生 token
     if (!user.emailVerifiedAt) {
-      await registerMailSend(email, user.id, res);
+      // await registerMailSend(email, user.id, res);
     } else {
       generateJwtSend(user.id, res);
     }
