@@ -29,8 +29,8 @@ export default {
       email,
       password,
     });
+    await registerMailSend(email, user.id, res);
   }
-  await registerMailSend(email, user.id, res);
 }),
 
 //登入
